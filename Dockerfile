@@ -5,7 +5,7 @@ FROM christ05/app:latest
 WORKDIR /app
 
 # Copiez le fichier package.json dans le conteneur
-COPY package.json .
+
 
 
 # Copiez tous les fichiers de l'application dans le conteneur

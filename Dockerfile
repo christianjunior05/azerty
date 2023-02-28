@@ -1,15 +1,18 @@
-# Utilisez une image légère d'Apache pour héberger votre site web
-FROM christ05:latest 
+# Utilisez une image de base légère avec Node.js préinstallé
+FROM christ05/app:latest
 
 # Définissez le répertoire de travail dans le conteneur
-WORKDIR /usr/local/apache2/htdocs/
+WORKDIR /app
 
-# Copiez les fichiers HTML et les fichiers de ressources de votre site web 
-# depuis votre machine locale dans le conteneur
-COPY index.html .
+# Copiez le fichier package.json dans le conteneur
+COPY package.json .
 
-# Exposez le port 80 pour permettre l'accès au site web
+
+# Copiez tous les fichiers de l'application dans le conteneur
+COPY . .
+
+# Définir le port sur lequel l'application écoutera
 EXPOSE 80
 
-# Démarrez Apache lorsque le conteneur est lancé
-CMD ["httpd-foreground"]
+# Démarrez l'application
+CMD ["npm", "start"]
